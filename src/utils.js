@@ -1,4 +1,6 @@
-const pm2 = require('pm2');
+'use strict'
+
+const pm2 = require('pm2')
 const { promisify } = require('util')
 
 const pm2List = promisify(pm2.list).bind(pm2)
@@ -8,13 +10,14 @@ const exec = promisify(require('child_process').exec)
 const getProc = async (pid) => {
   try {
     const processes = await pm2List()
-    const filtered = processes.filter((p) => p.pid == pid)
+    const numPid = parseInt(pid, 10)
+    const filtered = processes.filter((p) => p.pid === numPid)
 
     if (filtered.length !== 1) {
-      throw new Error(`could not uniquely identify process with PID ${pid}`);
+      throw new Error(`could not uniquely identify process with PID ${pid}`)
     }
 
-    const [proc] = filtered;
+    const [proc] = filtered
 
     return proc
   } catch (error) {

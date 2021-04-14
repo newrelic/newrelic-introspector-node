@@ -1,6 +1,8 @@
-const yargs = require('yargs');
+'use strict'
 
-const { list, introspect, instrument } = require('./commands');
+const yargs = require('yargs')
+
+const { list, introspect, instrument } = require('./commands')
 
 yargs
   .usage('Usage: $0 <cmd> [options]')
@@ -11,10 +13,10 @@ yargs
     {
       pid: {
         demand: true,
-        string: true,
-      },
+        string: true
+      }
     },
-    introspect,
+    introspect
   )
   .command(
     'instrument',
@@ -22,17 +24,17 @@ yargs
     {
       pid: {
         demand: true,
-        string: true,
+        string: true
       },
       licenseKey: {
         demand: true,
-        string: true,
+        string: true
       },
       appName: {
-        string: true,
-      },
+        string: true
+      }
     },
-    instrument,
+    instrument
   )
   .help()
-  .strict().argv;
+  .strict().argv

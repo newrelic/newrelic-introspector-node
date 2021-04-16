@@ -50,8 +50,8 @@ const instrument = async (argv) => {
       cwd: proc.pm2_env.pm_cwd
     })
 
-    console.error(stdout)
-    console.error(stderr)
+    console.log(stdout)
+    console.log(stderr)
 
     process.env.NEW_RELIC_LICENSE_KEY = argv.licenseKey
     process.env.NEW_RELIC_APP_NAME = argv.appName || proc.name
@@ -61,7 +61,7 @@ const instrument = async (argv) => {
       updateEnv: true
     })
 
-    console.error('Process instrumented successfully')
+    console.log('Process instrumented successfully')
     process.exit(0)
   } catch (error) {
     console.error(error)

@@ -1,11 +1,12 @@
 {
   "name": "nri-introspector-node",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/*.js test/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "integration": "tap test/integration/*.test.js --no-coverage --jobs=1",
+    "test": "npm run integration"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +19,11 @@
     "express": "^4.17.1",
     "sinon": "^10.0.0",
     "tap": "^15.0.2"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
+    "src/"
+  ]
 }

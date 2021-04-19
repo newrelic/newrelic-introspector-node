@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 New Relic Corporation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 'use strict'
 
 const { pm2List, pm2Restart, exec, getProc } = require('./utils')
@@ -34,7 +39,7 @@ const introspect = async (argv) => {
       pm_cwd: proc.pm2_env.pm_cwd
     }
 
-    console.log(output)
+    console.log(JSON.stringify(output))
     process.exit(0)
   } catch (error) {
     console.error(error)

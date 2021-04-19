@@ -60,6 +60,7 @@ const instrument = async (argv) => {
 
     process.env.NEW_RELIC_LICENSE_KEY = argv.licenseKey
     process.env.NEW_RELIC_APP_NAME = argv.appName || proc.name
+    process.env.NEW_RELIC_DISTRIBUTED_TRACING_ENABLED = true
 
     await pm2Restart(proc.pm_id, {
       nodeArgs: '-r newrelic',

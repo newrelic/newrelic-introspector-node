@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "Mon Apr 19 2021 16:28:22 GMT-0700 (Pacific Daylight Time)",
-  "projectName": "nri-introspector-node",
+  "lastUpdated": "Tue Apr 20 2021 11:40:20 GMT-0700 (Pacific Daylight Time)",
+  "projectName": "@newrelic/introspector-node",
   "projectUrl": "https://github.com/newrelic/newrelic-introspector-node",
   "includeDev": true,
   "dependencies": {

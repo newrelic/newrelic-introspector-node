@@ -1,6 +1,6 @@
 # Third Party Notices
 
-The nri-introspector-node uses source code from third party libraries which carry
+The @newrelic/introspector-node uses source code from third party libraries which carry
 their own copyright notices and license terms. These notices are provided
 below.
 

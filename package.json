@@ -1,5 +1,5 @@
 {
-  "name": "nri-introspector-node",
+  "name": "@newrelic/introspector-node",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",

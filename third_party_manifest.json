@@ -1,0 +1,87 @@
+{
+  "lastUpdated": "Tue Apr 20 2021 11:40:20 GMT-0700 (Pacific Daylight Time)",
+  "projectName": "@newrelic/introspector-node",
+  "projectUrl": "https://github.com/newrelic/newrelic-introspector-node",
+  "includeDev": true,
+  "dependencies": {
+    "pm2@4.5.6": {
+      "name": "pm2",
+      "version": "4.5.6",
+      "range": "^4.5.6",
+      "licenses": "AGPL-3.0",
+      "repoUrl": "https://github.com/Unitech/pm2",
+      "versionedRepoUrl": "https://github.com/Unitech/pm2/tree/v4.5.6",
+      "licenseFile": "node_modules/pm2/LICENSE",
+      "licenseUrl": "https://github.com/Unitech/pm2/blob/v4.5.6/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "Strzelewicz Alexandre",
+      "email": "alexandre@pm2.io",
+      "url": "https://pm2.io"
+    },
+    "yargs@16.2.0": {
+      "name": "yargs",
+      "version": "16.2.0",
+      "range": "^16.2.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/yargs/yargs",
+      "versionedRepoUrl": "https://github.com/yargs/yargs/tree/v16.2.0",
+      "licenseFile": "node_modules/yargs/LICENSE",
+      "licenseUrl": "https://github.com/yargs/yargs/blob/v16.2.0/LICENSE",
+      "licenseTextSource": "file"
+    }
+  },
+  "devDependencies": {
+    "eslint@7.24.0": {
+      "name": "eslint",
+      "version": "7.24.0",
+      "range": "^7.24.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/eslint/eslint",
+      "versionedRepoUrl": "https://github.com/eslint/eslint/tree/v7.24.0",
+      "licenseFile": "node_modules/eslint/LICENSE",
+      "licenseUrl": "https://github.com/eslint/eslint/blob/v7.24.0/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "Nicholas C. Zakas",
+      "email": "nicholas+npm@nczconsulting.com"
+    },
+    "express@4.17.1": {
+      "name": "express",
+      "version": "4.17.1",
+      "range": "^4.17.1",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/expressjs/express",
+      "versionedRepoUrl": "https://github.com/expressjs/express/tree/v4.17.1",
+      "licenseFile": "node_modules/express/LICENSE",
+      "licenseUrl": "https://github.com/expressjs/express/blob/v4.17.1/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "TJ Holowaychuk",
+      "email": "tj@vision-media.ca"
+    },
+    "sinon@10.0.0": {
+      "name": "sinon",
+      "version": "10.0.0",
+      "range": "^10.0.0",
+      "licenses": "BSD-3-Clause",
+      "repoUrl": "https://github.com/sinonjs/sinon",
+      "versionedRepoUrl": "https://github.com/sinonjs/sinon/tree/v10.0.0",
+      "licenseFile": "node_modules/sinon/LICENSE",
+      "licenseUrl": "https://github.com/sinonjs/sinon/blob/v10.0.0/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "Christian Johansen"
+    },
+    "tap@15.0.2": {
+      "name": "tap",
+      "version": "15.0.2",
+      "range": "^15.0.2",
+      "licenses": "ISC",
+      "repoUrl": "https://github.com/tapjs/node-tap",
+      "versionedRepoUrl": "https://github.com/tapjs/node-tap/tree/v15.0.2",
+      "licenseFile": "node_modules/tap/LICENSE",
+      "licenseUrl": "https://github.com/tapjs/node-tap/blob/v15.0.2/LICENSE",
+      "licenseTextSource": "file",
+      "publisher": "Isaac Z. Schlueter",
+      "email": "i@izs.me",
+      "url": "http://blog.izs.me"
+    }
+  }
+}

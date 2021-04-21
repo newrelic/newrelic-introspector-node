@@ -1,3 +1,8 @@
+/*
+ * Copyright 2021 New Relic Corporation. All rights reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 'use strict'
 
 const { pm2List, pm2Restart, exec, getProc } = require('./utils')
@@ -34,7 +39,7 @@ const introspect = async (argv) => {
       pm_cwd: proc.pm2_env.pm_cwd
     }
 
-    console.log(output)
+    console.log(JSON.stringify(output))
     process.exit(0)
   } catch (error) {
     console.error(error)
@@ -55,6 +60,7 @@ const instrument = async (argv) => {
 
     process.env.NEW_RELIC_LICENSE_KEY = argv.licenseKey
     process.env.NEW_RELIC_APP_NAME = argv.appName || proc.name
+    process.env.NEW_RELIC_DISTRIBUTED_TRACING_ENABLED = true
 
     await pm2Restart(proc.pm_id, {
       nodeArgs: '-r newrelic',

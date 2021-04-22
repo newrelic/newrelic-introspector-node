@@ -14,7 +14,6 @@ code, the source code can be found at [https://github.com/newrelic/newrelic-intr
 
 **[dependencies](#dependencies)**
 
-* [pm2](#pm2)
 * [yargs](#yargs)
 
 **[devDependencies](#devDependencies)**
@@ -26,15 +25,6 @@ code, the source code can be found at [https://github.com/newrelic/newrelic-intr
 
 
 ## dependencies
-
-### pm2
-
-This product includes source derived from [pm2](https://github.com/Unitech/pm2) ([v4.5.6](https://github.com/Unitech/pm2/tree/v4.5.6)), distributed under the [AGPL-3.0 License](https://github.com/Unitech/pm2/blob/v4.5.6/LICENSE):
-
-```
-GNU-AGPL-3.0.txt
-
-```
 
 ### yargs
 

@@ -1,23 +1,9 @@
 {
-  "lastUpdated": "Tue Apr 20 2021 11:40:20 GMT-0700 (Pacific Daylight Time)",
+  "lastUpdated": "Wed Apr 21 2021 17:00:35 GMT-0700 (Pacific Daylight Time)",
   "projectName": "@newrelic/introspector-node",
   "projectUrl": "https://github.com/newrelic/newrelic-introspector-node",
   "includeDev": true,
   "dependencies": {
-    "pm2@4.5.6": {
-      "name": "pm2",
-      "version": "4.5.6",
-      "range": "^4.5.6",
-      "licenses": "AGPL-3.0",
-      "repoUrl": "https://github.com/Unitech/pm2",
-      "versionedRepoUrl": "https://github.com/Unitech/pm2/tree/v4.5.6",
-      "licenseFile": "node_modules/pm2/LICENSE",
-      "licenseUrl": "https://github.com/Unitech/pm2/blob/v4.5.6/LICENSE",
-      "licenseTextSource": "file",
-      "publisher": "Strzelewicz Alexandre",
-      "email": "alexandre@pm2.io",
-      "url": "https://pm2.io"
-    },
     "yargs@16.2.0": {
       "name": "yargs",
       "version": "16.2.0",

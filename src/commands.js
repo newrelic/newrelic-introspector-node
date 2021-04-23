@@ -51,9 +51,8 @@ const instrument = async (argv) => {
   try {
     const proc = await getProc(argv.pid)
 
-    const { stdout, stderr } = await exec('npm install newrelic --save', {
-      cwd: proc.pm2_env.pm_cwd
-    })
+    const { stdout, stderr } = await exec('npm install newrelic --save',
+      proc.pm2_env.pm_cwd)
 
     console.error(stdout)
     console.error(stderr)
@@ -62,10 +61,7 @@ const instrument = async (argv) => {
     process.env.NEW_RELIC_APP_NAME = argv.appName || proc.name
     process.env.NEW_RELIC_DISTRIBUTED_TRACING_ENABLED = true
 
-    await pm2Restart(proc.pm_id, {
-      nodeArgs: '-r newrelic',
-      updateEnv: true
-    })
+    await pm2Restart(proc.pm_id)
 
     console.error('Process instrumented successfully')
     process.exit(0)

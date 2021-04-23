@@ -5,12 +5,38 @@
 
 'use strict'
 
-const pm2 = require('pm2')
-const { promisify } = require('util')
+const exec = require('child_process').exec
 
-const pm2List = promisify(pm2.list).bind(pm2)
-const pm2Restart = promisify(pm2.restart).bind(pm2)
-const exec = promisify(require('child_process').exec)
+const execPromise = (cmd, cwd) => {
+  let opts = {}
+
+  if (cwd) {
+    opts.cwd = cwd
+    console.error(cwd)
+  }
+  return new Promise((resolve, reject) => {
+    exec(cmd, opts, (err, stdout, stderr) => {
+      if (err) {
+        reject(err)
+      }
+
+      resolve({
+        stdout,
+        stderr
+      })
+    })
+  })
+}
+
+const pm2List = async () => {
+  const procListResults = await execPromise('pm2 jlist')
+
+  return JSON.parse(procListResults.stdout)
+}
+
+const pm2Restart = async (pmId) => {
+  await execPromise(`pm2 restart ${pmId} --update-env --node-args "-r newrelic"`)
+}
 
 const getProc = async (pid) => {
   try {
@@ -33,6 +59,6 @@ const getProc = async (pid) => {
 module.exports = {
   pm2List,
   pm2Restart,
-  exec,
+  exec: execPromise,
   getProc
 }

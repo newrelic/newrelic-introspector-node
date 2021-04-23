@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint src/*.js test/*.js",
-    "integration": "tap test/integration/*.test.js --no-coverage --jobs=1",
-    "test": "npm run integration"
+    "lint": "eslint src/*.js test/**/*.js",
+    "unit": "tap test/unit/*.test.js --no-coverage --jobs=1",
+    "test": "npm run unit"
   },
   "author": "",
   "license": "ISC",

@@ -37,7 +37,7 @@ yargs
       },
       appName: {
         string: true
-      }
+      },
       region: {
         string: true,
         default: process.env.NEW_RELIC_REGION || 'US'

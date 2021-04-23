@@ -2,6 +2,7 @@
 
 # newrelic-introspector-node
 
+<<<<<<< HEAD
 This is a CLI tool for discovering instrumentable Node.js applications on a system,
 retrieving contextual information about them, and automating the install of the New Relic Node agent.
 
@@ -59,3 +60,6 @@ If you have any questions, or to execute our corporate CLA (which is required if
 newrelic-introspector-node is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
 > [The newrelic-introspector-node also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+=======
+### DO NOT USE
+>>>>>>> main

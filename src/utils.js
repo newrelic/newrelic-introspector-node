@@ -12,9 +12,12 @@ const pm2List = async () => {
   return JSON.parse(procListResults.stdout)
 }
 
-const pm2Restart = async (pmId) => {
+const pm2RestartandSave = async (pmId) => {
   await execPromise
     .execPromise(`pm2 restart ${pmId} --update-env --node-args "-r newrelic"`)
+
+  await execPromise
+    .execPromise('pm2 save')
 }
 
 const getProc = async (pid) => {
@@ -37,7 +40,7 @@ const getProc = async (pid) => {
 
 module.exports = {
   pm2List,
-  pm2Restart,
+  pm2RestartandSave,
   exec: execPromise.execPromise,
   getProc
 }

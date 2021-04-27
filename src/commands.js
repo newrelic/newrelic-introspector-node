@@ -5,7 +5,7 @@
 
 'use strict'
 
-const { pm2List, pm2Restart, exec, getProc } = require('./utils')
+const { pm2List, pm2RestartandSave, exec, getProc } = require('./utils')
 
 const list = async () => {
   try {
@@ -64,7 +64,7 @@ const instrument = async (argv) => {
       process.env.NEW_RELIC_HOST = 'staging-collector.newrelic.com'
     }
 
-    await pm2Restart(proc.pm_id)
+    await pm2RestartandSave(proc.pm_id)
 
     console.error('Process instrumented successfully')
     process.exit(0)

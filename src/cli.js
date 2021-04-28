@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
  * Copyright 2021 New Relic Corporation. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
@@ -45,5 +47,6 @@ yargs
     },
     instrument
   )
+  .demandCommand()
   .help()
   .strict().argv

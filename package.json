@@ -28,5 +28,8 @@
     "README.md",
     "THIRD_PARTY_NOTICES.md",
     "src/"
-  ]
+  ],
+  "bin": {
+    "newrelic-introspector-node": "./src/cli.js"
+  }
 }

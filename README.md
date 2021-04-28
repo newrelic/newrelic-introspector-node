@@ -5,17 +5,16 @@
 This is a CLI tool for discovering instrumentable Node.js applications on a system,
 retrieving contextual information about them, and automating the install of the New Relic Node agent.
 
-Currently the instrument command only discovers and instruments processes hosted with the [PM2](https://pm2.keymetrics.io/) process manager.  Support for other process managers will be explored in the future.
+Currently the instrument command only discovers and instruments processes hosted with the [PM2](https://pm2.keymetrics.io/) process manager. Support for other process managers will be explored in the future.
 
 ## Getting Started
 
 ```
-> npm install
-
-> node src/index.js list
+> npm i -g @newrelic/introspector-node
+> newrelic-introspector-node list
 [ 12345 ]
 
-> node src/index.js introspect --pid 12345
+> newrelic-introspector-node introspect --pid 12345
 {
   pid: 12345,
   pm_id: 0,
@@ -24,7 +23,7 @@ Currently the instrument command only discovers and instruments processes hosted
   pm_cwd: '/Users/myuser/node-app'
 }
 
-> node src/index.js instrument --pid 12345 --licenseKey $NEW_RELIC_LICENSE_KEY --appName "My Node Application"
+> newrelic-introspector-node instrument --pid 12345 --licenseKey $NEW_RELIC_LICENSE_KEY --appName "My Node Application"
 ...
 Process instrumented successfully
 
@@ -54,11 +53,11 @@ If you have any questions, or to execute our corporate CLA (which is required if
 
 **A note about vulnerabilities**
 
-As noted in our [security policy](../../security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
+As noted in our [security policy](https://github.com/newrelic/newrelic-introspector-node/security/policy), New Relic is committed to the privacy and security of our customers and their data. We believe that providing coordinated disclosure by security researchers and engaging with the security community are important means to achieve our security goals.
 
 If you believe you have found a security vulnerability in this project or any of New Relic's products or websites, we welcome and greatly appreciate you reporting it to New Relic through [HackerOne](https://hackerone.com/newrelic).
 
-If you would like to contribute to this project, review [these guidelines](./CONTRIBUTING.md).
+If you would like to contribute to this project, review [these guidelines](https://github.com/newrelic/newrelic-introspector-node/blob/main/CONTRIBUTING.md).
 
 ## License
 

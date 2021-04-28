@@ -5,9 +5,7 @@
 This is a CLI tool for discovering instrumentable Node.js applications on a system,
 retrieving contextual information about them, and automating the install of the New Relic Node agent.
 
-Processes need to be hosted with the [PM2](https://pm2.keymetrics.io/) process manager for this tool to successfully
-instrument them with the `instrument` command. Support for other process
-managers will be explored in the future.
+Currently the instrument command only discovers and instruments processes hosted with the [PM2](https://pm2.keymetrics.io/) process manager.  Support for other process managers will be explored in the future.
 
 ## Getting Started
 

@@ -1,8 +1,12 @@
 {
   "name": "@newrelic/introspector-node",
   "version": "0.1.0",
-  "description": "",
+  "description": "newrelic-introspector-node",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newrelic/newrelic-introspector-node.git"
+  },
   "scripts": {
     "lint": "eslint src/*.js test/**/*.js",
     "unit": "tap test/unit/*.test.js --no-coverage --jobs=1",

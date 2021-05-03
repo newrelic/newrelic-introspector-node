@@ -4,6 +4,7 @@
  */
 'use strict'
 
+const fs = require('fs')
 const execPromise = require('./execPromise')
 
 const pm2List = async () => {
@@ -14,10 +15,10 @@ const pm2List = async () => {
 
 const pm2RestartandSave = async (pmId) => {
   await execPromise
-    .execPromise(`pm2 restart ${pmId} --update-env --node-args "-r newrelic"`)
+  .execPromise(`pm2 restart ${pmId} --update-env --node-args "-r newrelic"`)
 
   await execPromise
-    .execPromise('pm2 save')
+  .execPromise('pm2 save')
 }
 
 const getProc = async (pid) => {
@@ -38,9 +39,60 @@ const getProc = async (pid) => {
   }
 }
 
+
+const isFile = (path) => {
+  try {
+    const stats = fs.statSync(path)
+    return stats.isFile()
+  } catch (err) {
+    return false
+  }
+}
+
+const checkPackageJson = (path) => {
+    if (!isFile(path)) {
+      if (path[path.length - 1] === '/') {
+        return (isFile(`${path}package.json`))
+      }
+
+      return (isFile(`${path}/package.json`))
+    }
+
+    const rgx = /[^/]*$/
+    const pkgPath = path.replace(rgx, 'package.json')
+
+    return isFile(pkgPath)
+}
+
+const getTruePath = async (proc) => {
+  return new Promise((resolve, reject) => {
+    let truePath = ''
+
+    const cwdPathOk = checkPackageJson(proc.pm2_env.pm_cwd)
+
+    const execPathOk = checkPackageJson(proc.pm2_env.pm_exec_path)
+
+    if (cwdPathOk) {
+      truePath = proc.pm2_env.pm_cwd
+    } else if (execPathOk) {
+      truePath = proc.pm2_env.pm_exec_path
+    } else {
+      reject(false)
+    }
+
+    if (isFile(truePath)) {
+      resolve(truePath.substring(0, truePath.lastIndexOf('/')))
+    }
+
+    resolve(truePath)
+  })
+}
+
 module.exports = {
   pm2List,
   pm2RestartandSave,
   exec: execPromise.execPromise,
-  getProc
+  getProc,
+  getTruePath,
+  checkPackageJson
 }

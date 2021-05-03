@@ -5,7 +5,7 @@
 
 'use strict'
 
-const { pm2List, pm2RestartandSave, exec, getProc } = require('./utils')
+const { pm2List, pm2RestartandSave, exec, getProc, getTruePath } = require('./utils')
 
 const list = async () => {
   try {
@@ -50,9 +50,10 @@ const introspect = async (argv) => {
 const instrument = async (argv) => {
   try {
     const proc = await getProc(argv.pid)
+    const truePath = await getTruePath(proc)
 
     const { stdout, stderr } = await exec('npm install newrelic --save',
-      proc.pm2_env.pm_cwd)
+      truePath)
 
     console.error(stdout)
     console.error(stderr)

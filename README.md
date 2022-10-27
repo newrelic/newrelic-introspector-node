@@ -1,6 +1,8 @@
-[![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
+[![Community Project header](https://github.com/newrelic/opensource-website/raw/main/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
 # newrelic-introspector-node
+[![npm status badge][3]][4] [![Introspector CI][1]][2] [![codecov][5]][6]
+
 
 This is a CLI tool for discovering instrumentable Node.js applications on a system,
 retrieving contextual information about them, and automating the install of the New Relic Node agent.
@@ -64,3 +66,11 @@ If you would like to contribute to this project, review [these guidelines](https
 newrelic-introspector-node is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
 > [The newrelic-introspector-node also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+
+[1]: https://github.com/newrelic/newrelic-introspector-node/workflows/New%20Relic%20Introspector%20Node/badge.svg 
+[2]: https://github.com/newrelic/node-introspector-node/actions
+[3]: https://img.shields.io/npm/v/@newrelic/introspector-node.svg 
+[4]: https://www.npmjs.com/package/@newrelic/introspector-node
+[5]: https://codecov.io/gh/newrelic/newrelic-introspector-node/branch/main/graph/badge.svg?token=89T0ZLX43N
+[6]: https://codecov.io/gh/newrelic/newrelic-introspector-node
+

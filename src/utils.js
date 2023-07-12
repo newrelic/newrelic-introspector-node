@@ -1,7 +1,8 @@
 /*
- * Copyright 2021 New Relic Corporation. All rights reserved.
+ * Copyright 2023 New Relic Corporation. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+
 'use strict'
 
 const fs = require('fs')
@@ -14,11 +15,9 @@ const pm2List = async () => {
 }
 
 const pm2RestartandSave = async (pmId) => {
-  await execPromise
-  .execPromise(`pm2 restart ${pmId} --update-env --node-args "-r newrelic"`)
+  await execPromise.execPromise(`pm2 restart ${pmId} --update-env --node-args "-r newrelic"`)
 
-  await execPromise
-  .execPromise('pm2 save')
+  await execPromise.execPromise('pm2 save')
 }
 
 const getProc = async (pid) => {
@@ -39,7 +38,6 @@ const getProc = async (pid) => {
   }
 }
 
-
 const isFile = (path) => {
   try {
     const stats = fs.statSync(path)
@@ -50,18 +48,18 @@ const isFile = (path) => {
 }
 
 const checkPackageJson = (path) => {
-    if (!isFile(path)) {
-      if (path[path.length - 1] === '/') {
-        return (isFile(`${path}package.json`))
-      }
-
-      return (isFile(`${path}/package.json`))
+  if (!isFile(path)) {
+    if (path[path.length - 1] === '/') {
+      return isFile(`${path}package.json`)
     }
 
-    const rgx = /[^/]*$/
-    const pkgPath = path.replace(rgx, 'package.json')
+    return isFile(`${path}/package.json`)
+  }
 
-    return isFile(pkgPath)
+  const rgx = /[^/]*$/
+  const pkgPath = path.replace(rgx, 'package.json')
+
+  return isFile(pkgPath)
 }
 
 const getTruePath = async (proc) => {

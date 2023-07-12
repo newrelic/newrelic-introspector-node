@@ -62,7 +62,7 @@ const instrument = async (argv) => {
     process.env.NEW_RELIC_LICENSE_KEY = argv.licenseKey
     process.env.NEW_RELIC_APP_NAME = argv.appName || proc.name
     process.env.NEW_RELIC_DISTRIBUTED_TRACING_ENABLED = true
-    if (argv.region.toLowerCase() === 'staging') {
+    if (argv?.region?.toLowerCase() === 'staging') {
       process.env.NEW_RELIC_HOST = 'staging-collector.newrelic.com'
     }
 

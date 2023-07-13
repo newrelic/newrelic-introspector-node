@@ -8,7 +8,7 @@
 const exec = require('child_process').exec
 
 const execPromise = (cmd, cwd) => {
-  let opts = {}
+  const opts = {}
 
   if (cwd) {
     opts.cwd = cwd
@@ -29,5 +29,5 @@ const execPromise = (cmd, cwd) => {
 
 // export like this to stub function in tests
 module.exports = {
-	execPromise
+  execPromise
 }

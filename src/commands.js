@@ -1,7 +1,9 @@
 /*
- * Copyright 2021 New Relic Corporation. All rights reserved.
+ * Copyright 2023 New Relic Corporation. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+
+/* eslint-disable no-process-exit, no-console */
 
 'use strict'
 
@@ -52,8 +54,7 @@ const instrument = async (argv) => {
     const proc = await getProc(argv.pid)
     const truePath = await getTruePath(proc)
 
-    const { stdout, stderr } = await exec('npm install newrelic --save',
-      truePath)
+    const { stdout, stderr } = await exec('npm install newrelic --save', truePath)
 
     console.error(stdout)
     console.error(stderr)

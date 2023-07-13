@@ -1,12 +1,13 @@
 /*
- * Copyright 2021 New Relic Corporation. All rights reserved.
+ * Copyright 2023 New Relic Corporation. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+
 'use strict'
 
 const tap = require('tap')
 const execPromise = require('../../src/execPromise')
-let sinon = require('sinon')
+const sinon = require('sinon')
 
 const { getProc } = require('../../src/utils')
 

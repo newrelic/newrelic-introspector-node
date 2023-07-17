@@ -42,7 +42,7 @@ tap.test('cli', (t) => {
       /Command failed: pm2 jlist/,
       'should run and fail because pm2 is not installed'
     )
-    // await execAsync('node ./src/cli introspect --pid 0')
+    t.end()
   })
 
   t.test('should error when required fields are missing with instrument', async (t) => {
@@ -60,5 +60,6 @@ tap.test('cli', (t) => {
       /Command failed: pm2 jlist/,
       'should run and fail because pm2 is not installed'
     )
+    t.end()
   })
 })

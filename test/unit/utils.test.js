@@ -9,7 +9,7 @@ const tap = require('tap')
 const execPromise = require('../../src/execPromise')
 const sinon = require('sinon')
 
-const { getProc } = require('../../src/utils')
+const { getProc, pm2RestartandSave } = require('../../src/utils')
 
 tap.test('utils', (test) => {
   let execStub
@@ -58,6 +58,33 @@ tap.test('utils', (test) => {
       t.ok(err, 'throws when pid not found')
     }
 
+    t.end()
+  })
+
+  test.test('pm2RestartAndSave should restart and save in pm2', async (t) => {
+    execStub.resolves()
+    await pm2RestartandSave(1)
+    t.equal(execStub.callCount, 2, 'should call restart and save')
+    t.equal(
+      execStub.args[0][0],
+      'pm2 restart 1 --update-env --node-args "-r newrelic"',
+      'should call restart with proper args'
+    )
+    t.equal(execStub.args[1][0], 'pm2 save', 'should call save')
+  })
+
+  test.test('pm2RestartAndSave should throw error if restart fails', (t) => {
+    const err = new Error('restart failed')
+    execStub.onCall(0).rejects(err)
+    t.rejects(pm2RestartandSave(1), err, 'should reject with restart error')
+    t.end()
+  })
+
+  test.test('pm2RestartAndSave should throw error if save fails', async (t) => {
+    const err = new Error('save failed')
+    execStub.onCall(0).resolves()
+    execStub.onCall(1).rejects(err)
+    t.rejects(pm2RestartandSave(1), err, 'should reject with save error')
     t.end()
   })
 })

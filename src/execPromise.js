@@ -5,7 +5,7 @@
 
 'use strict'
 
-const exec = require('child_process').exec
+const cp = require('child_process')
 
 const execPromise = (cmd, cwd) => {
   const opts = {}
@@ -14,7 +14,7 @@ const execPromise = (cmd, cwd) => {
     opts.cwd = cwd
   }
   return new Promise((resolve, reject) => {
-    exec(cmd, opts, (err, stdout, stderr) => {
+    cp.exec(cmd, opts, (err, stdout, stderr) => {
       if (err) {
         reject(err)
       }

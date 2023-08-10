@@ -15,6 +15,10 @@
     "prepare": "husky install",
     "test": "npm run unit"
   },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=6.0.0"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

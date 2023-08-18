@@ -1,4 +1,15 @@
 {
   "repository": "newrelic/newrelic-introspector-node",
-  "entries": []
+  "entries": [
+    {
+      "version": "0.2.0",
+      "changes": {
+        "security": [],
+        "bugfixes": [
+          "use community header instead of community plus"
+        ],
+        "features": []
+      }
+    }
+  ]
 }

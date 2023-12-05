@@ -7,7 +7,7 @@
         "security": [],
         "bugfixes": [],
         "features": [
-          "Introspect node version from `pm2` env"
+          "Added `node_version` to `instrospect` command output."
         ]
       }
     },

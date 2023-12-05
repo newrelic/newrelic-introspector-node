@@ -38,7 +38,8 @@ const introspect = async (argv) => {
       pm_id: proc.pm_id,
       name: proc.name,
       pm_exec_path: proc.pm2_env.pm_exec_path,
-      pm_cwd: proc.pm2_env.pm_cwd
+      pm_cwd: proc.pm2_env.pm_cwd,
+      node_version: proc.pm2_env.node_version
     }
 
     console.log(JSON.stringify(output))

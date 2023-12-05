@@ -90,7 +90,8 @@ tap.test('commands', (t) => {
       name: 'Unit Test',
       pm2_env: {
         pm_exec_path: '/path/to/pm2',
-        pm_cwd: 'pm2 list'
+        pm_cwd: 'pm2 list',
+        node_version: '16.20.2'
       }
     }
 
@@ -104,7 +105,8 @@ tap.test('commands', (t) => {
         pm_id: 1,
         name: 'Unit Test',
         pm_exec_path: '/path/to/pm2',
-        pm_cwd: 'pm2 list'
+        pm_cwd: 'pm2 list',
+        node_version: '16.20.2'
       }),
       'should list meta about a pid'
     )

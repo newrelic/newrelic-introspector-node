@@ -1,3 +1,9 @@
+### v0.3.0 (2023-12-05)
+
+#### Features
+
+* Introspect node version from `pm2` env ([#38](https://github.com/newrelic/newrelic-introspector-node/pull/38)) ([45f8299](https://github.com/newrelic/newrelic-introspector-node/commit/45f829998d92d6994c8e8ab21d674a8c8221a072))
+
 ### v0.2.0 (2023-08-28)
 
 * **BREAKING**: Removed support for Node 14.

@@ -1,15 +1,13 @@
 ### v0.4.0 (2024-06-28)
 
-#### Security improvements
+#### Features
 
-* **deps:** bump @babel/traverse ([#44](https://github.com/newrelic/newrelic-introspector-node/pull/44)) ([14bc335](https://github.com/newrelic/newrelic-introspector-node/commit/14bc335acf85036e593b5cacc35dbaf78e1f993f))
-    * Signed-off-by: dependabot[bot] <support@github.com> Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+* Added support for Node 22.
 
 #### Miscellaneous chores
 
 * Added Node 22 to CI ([#45](https://github.com/newrelic/newrelic-introspector-node/pull/45)) ([a9485c8](https://github.com/newrelic/newrelic-introspector-node/commit/a9485c8a7bdf3d8f38df1bac1af0b9dbf9867405))
-* **deps-dev:** bump express from 4.18.2 to 4.19.2 ([#43](https://github.com/newrelic/newrelic-introspector-node/pull/43)) ([7b78db5](https://github.com/newrelic/newrelic-introspector-node/commit/7b78db594b48cdf8c11f30e9e2b2117e0e0dbc11))
-    * Signed-off-by: dependabot[bot] <support@github.com> Co-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>
+* Updated minimum versions of dev dependencies. ([#43](https://github.com/newrelic/newrelic-introspector-node/pull/43)) ([7b78db5](https://github.com/newrelic/newrelic-introspector-node/commit/7b78db594b48cdf8c11f30e9e2b2117e0e0dbc11))([#44](https://github.com/newrelic/newrelic-introspector-node/pull/44)) ([14bc335](https://github.com/newrelic/newrelic-introspector-node/commit/14bc335acf85036e593b5cacc35dbaf78e1f993f))
 * Removed outdated Slack reference ([#47](https://github.com/newrelic/newrelic-introspector-node/pull/47)) ([be3088d](https://github.com/newrelic/newrelic-introspector-node/commit/be3088db6fbd7c5bb92854fad8baa0c9704293ef))
 
 #### Continuous integration
@@ -21,7 +19,7 @@
 
 #### Features
 
-* Added `node_version` to `instrospect` command output ([#38](https://github.com/newrelic/newrelic-introspector-node/pull/38)) ([45f8299](https://github.com/newrelic/newrelic-introspector-node/commit/45f829998d92d6994c8e8ab21d674a8c8221a072)).
+* Added `node_version` to `introspect` command output ([#38](https://github.com/newrelic/newrelic-introspector-node/pull/38)) ([45f8299](https://github.com/newrelic/newrelic-introspector-node/commit/45f829998d92d6994c8e8ab21d674a8c8221a072)).
 
 ### v0.2.0 (2023-08-28)
 

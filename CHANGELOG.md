@@ -1,8 +1,25 @@
+### v0.4.0 (2024-06-28)
+
+#### Features
+
+* Added support for Node 22.
+
+#### Miscellaneous chores
+
+* Added Node 22 to CI ([#45](https://github.com/newrelic/newrelic-introspector-node/pull/45)) ([a9485c8](https://github.com/newrelic/newrelic-introspector-node/commit/a9485c8a7bdf3d8f38df1bac1af0b9dbf9867405))
+* Updated minimum versions of dev dependencies. ([#43](https://github.com/newrelic/newrelic-introspector-node/pull/43)) ([7b78db5](https://github.com/newrelic/newrelic-introspector-node/commit/7b78db594b48cdf8c11f30e9e2b2117e0e0dbc11))([#44](https://github.com/newrelic/newrelic-introspector-node/pull/44)) ([14bc335](https://github.com/newrelic/newrelic-introspector-node/commit/14bc335acf85036e593b5cacc35dbaf78e1f993f))
+* Removed outdated Slack reference ([#47](https://github.com/newrelic/newrelic-introspector-node/pull/47)) ([be3088d](https://github.com/newrelic/newrelic-introspector-node/commit/be3088db6fbd7c5bb92854fad8baa0c9704293ef))
+
+#### Continuous integration
+
+* Removed `use_new_release` input from prepare release workflow ([#42](https://github.com/newrelic/newrelic-introspector-node/pull/42)) ([0b75a75](https://github.com/newrelic/newrelic-introspector-node/commit/0b75a750c0d465ebea1057f926e60bb5556d9cf6))
+* removed changelog.json file ([#41](https://github.com/newrelic/newrelic-introspector-node/pull/41)) ([4ee2093](https://github.com/newrelic/newrelic-introspector-node/commit/4ee2093c2161a569fffa5fae346c13407b65318b))
+
 ### v0.3.0 (2023-12-05)
 
 #### Features
 
-* Added `node_version` to `instrospect` command output ([#38](https://github.com/newrelic/newrelic-introspector-node/pull/38)) ([45f8299](https://github.com/newrelic/newrelic-introspector-node/commit/45f829998d92d6994c8e8ab21d674a8c8221a072)).
+* Added `node_version` to `introspect` command output ([#38](https://github.com/newrelic/newrelic-introspector-node/pull/38)) ([45f8299](https://github.com/newrelic/newrelic-introspector-node/commit/45f829998d92d6994c8e8ab21d674a8c8221a072)).
 
 ### v0.2.0 (2023-08-28)
 

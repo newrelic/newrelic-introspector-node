@@ -1,3 +1,12 @@
+### v1.0.0 (2024-07-31)
+#### ⚠ BREAKING CHANGES
+
+* Dropped support for Node 16
+
+#### Features
+
+* Dropped support for Node 16 ([#55](https://github.com/newrelic/newrelic-introspector-node/pull/55)) ([ab9edd5](https://github.com/newrelic/newrelic-introspector-node/commit/ab9edd55f5af5eea0c209a906c3fb020d389cee7))
+
 ### v0.4.0 (2024-06-28)
 
 #### Features

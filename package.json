@@ -15,7 +15,7 @@
     "test": "npm run unit"
   },
   "engines": {
-    "node": ">=18",
+    "node": ">=20.0",
     "npm": ">=6.0.0"
   },
   "author": "",

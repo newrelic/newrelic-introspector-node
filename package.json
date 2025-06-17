@@ -1,6 +1,6 @@
 {
   "name": "@newrelic/introspector-node",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "newrelic-introspector-node",
   "main": "index.js",
   "repository": {

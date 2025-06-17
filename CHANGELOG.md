@@ -1,3 +1,9 @@
+### v1.1.0 (2025-06-17)
+
+#### Miscellaneous chores
+
+* Add testing against Node 24 ([#60](https://github.com/newrelic/newrelic-introspector-node/pull/60)) ([ad91b01](https://github.com/newrelic/newrelic-introspector-node/commit/ad91b01eb7eb9bb0bfb46e853d5455498b3b1697))
+
 ### v1.0.0 (2024-07-31)
 #### ⚠ BREAKING CHANGES
 

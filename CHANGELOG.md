@@ -1,3 +1,12 @@
+### v2.0.0 (2025-07-22)
+#### ⚠ BREAKING CHANGES
+
+* Removed Node.js 18 support
+
+#### Features
+
+* Removed Node.js 18 support ([#59](https://github.com/newrelic/newrelic-introspector-node/pull/59)) ([c851cfd](https://github.com/newrelic/newrelic-introspector-node/commit/c851cfd078e72bf8d2fc407b301418b499481152))
+
 ### v1.1.0 (2025-06-17)
 
 #### Miscellaneous chores

@@ -1,3 +1,17 @@
+### v3.0.0 (2026-05-05)
+#### ⚠ BREAKING CHANGES
+
+
+* Removed Node.js 20 support
+
+#### Features
+
+* Removed Node.js 20 support ([#65](https://github.com/newrelic/newrelic-introspector-node/pull/65)) ([1430054](https://github.com/newrelic/newrelic-introspector-node/commit/1430054e4f8bd505bde98ac028deec1f8ba64708))
+
+#### Miscellaneous chores
+
+* Update release workflow ([#63](https://github.com/newrelic/newrelic-introspector-node/pull/63)) ([67e2c83](https://github.com/newrelic/newrelic-introspector-node/commit/67e2c832833c742a72b40088bd5e080dcd63d0b7))
+
 ### v2.0.0 (2025-07-22)
 #### ⚠ BREAKING CHANGES
 

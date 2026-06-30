@@ -5,7 +5,8 @@
 
 'use strict'
 
-const tap = require('tap')
+const test = require('node:test')
+const assert = require('node:assert')
 const cp = require('child_process')
 const util = require('util')
 const execAsync = util.promisify(cp.exec)
@@ -16,50 +17,42 @@ const execAsync = util.promisify(cp.exec)
  * of the actual commands that is done elsewhere
  */
 
-tap.test('cli', (t) => {
-  t.autoend()
+test('should run list', async () => {
+  await assert.rejects(
+    execAsync('node ./src/cli list'),
+    /Command failed: pm2 jlist/,
+    'should run and fail because pm2 is not installed'
+  )
+})
 
-  t.test('should run list', async (t) => {
-    t.rejects(
-      execAsync('node ./src/cli list'),
-      /Command failed: pm2 jlist/,
-      'should run and fail because pm2 is not installed'
-    )
-    t.end()
-  })
-  t.test('should error if pid is not provided when calling introspect', async (t) => {
-    t.rejects(
-      execAsync('node ./src/cli introspect'),
-      /Missing required argument: pid/,
-      'should state pid is required'
-    )
-    t.end()
-  })
+test('should error if pid is not provided when calling introspect', async () => {
+  await assert.rejects(
+    execAsync('node ./src/cli introspect'),
+    /Missing required argument: pid/,
+    'should state pid is required'
+  )
+})
 
-  t.test('should run introspect when pid is provided', async (t) => {
-    t.rejects(
-      execAsync('node ./src/cli introspect --pid 0'),
-      /Command failed: pm2 jlist/,
-      'should run and fail because pm2 is not installed'
-    )
-    t.end()
-  })
+test('should run introspect when pid is provided', async () => {
+  await assert.rejects(
+    execAsync('node ./src/cli introspect --pid 0'),
+    /Command failed: pm2 jlist/,
+    'should run and fail because pm2 is not installed'
+  )
+})
 
-  t.test('should error when required fields are missing with instrument', async (t) => {
-    t.rejects(
-      execAsync('node ./src/cli instrument'),
-      /Missing required arguments: pid, licenseKey/,
-      'should state pid is required'
-    )
-    t.end()
-  })
+test('should error when required fields are missing with instrument', async () => {
+  await assert.rejects(
+    execAsync('node ./src/cli instrument'),
+    /Missing required arguments: pid, licenseKey/,
+    'should state pid is required'
+  )
+})
 
-  t.test('should run instrument', async (t) => {
-    t.rejects(
-      execAsync('node ./src/cli instrument --pid 0 --licenseKey super-secret --appName test'),
-      /Command failed: pm2 jlist/,
-      'should run and fail because pm2 is not installed'
-    )
-    t.end()
-  })
+test('should run instrument', async () => {
+  await assert.rejects(
+    execAsync('node ./src/cli instrument --pid 0 --licenseKey super-secret --appName test'),
+    /Command failed: pm2 jlist/,
+    'should run and fail because pm2 is not installed'
+  )
 })

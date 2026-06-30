@@ -5,217 +5,191 @@
 
 'use strict'
 
-const tap = require('tap')
+const test = require('node:test')
+const assert = require('node:assert')
 const { checkPackageJson, getTruePath } = require('../../src/utils')
 
 const fs = require('fs')
 const sinon = require('sinon')
 
-tap.test('helper', (test) => {
-  let statSyncStub
+test.beforeEach((ctx) => {
+  ctx.nr = { statSyncStub: sinon.stub(fs, 'statSync') }
+})
 
-  test.autoend()
+test.afterEach((ctx) => {
+  ctx.nr.statSyncStub.restore()
+})
 
-  test.beforeEach(() => {
-    statSyncStub = sinon.stub(fs, 'statSync')
+test('checkPackageJson returns true if path is dir with package.json', (t) => {
+  const { statSyncStub } = t.nr
+  const pathToCheck = '/dir'
+  const pathPkgJson = '/dir/package.json'
+
+  statSyncStub.withArgs(pathToCheck).returns({
+    isFile: () => false
   })
-
-  test.afterEach(() => {
-    statSyncStub.restore()
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => true
   })
+  const result = checkPackageJson(pathToCheck)
 
-  test.test('checkPackageJson returns true if path is dir with package.json', (t) => {
-    const pathToCheck = '/dir'
-    const pathPkgJson = '/dir/package.json'
+  assert.ok(result)
+})
 
-    statSyncStub.withArgs(pathToCheck).returns({
-      isFile: () => false
-    })
-    statSyncStub.withArgs(pathPkgJson).returns({
-      isFile: () => true
-    })
-    const result = checkPackageJson(pathToCheck)
+test('checkPackageJson returns true if false is dir with no package.json', (t) => {
+  const { statSyncStub } = t.nr
+  const pathToCheck = '/dir'
+  const pathPkgJson = '/dir/package.json'
 
-    t.ok(result)
-
-    t.end()
+  statSyncStub.withArgs(pathToCheck).returns({
+    isFile: () => false
   })
-
-  test.test('checkPackageJson returns true if false is dir with no package.json', (t) => {
-    const pathToCheck = '/dir'
-    const pathPkgJson = '/dir/package.json'
-
-    statSyncStub.withArgs(pathToCheck).returns({
-      isFile: () => false
-    })
-    statSyncStub.withArgs(pathPkgJson).returns({
-      isFile: () => false
-    })
-    const result = checkPackageJson(pathToCheck)
-
-    t.notOk(result)
-
-    t.end()
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => false
   })
+  const result = checkPackageJson(pathToCheck)
 
-  test.test(
-    "checkPackageJson returns true if path is dir, path ends in '/', with package.json",
-    (t) => {
-      const pathToCheck = '/dir/'
-      const pathPkgJson = '/dir/package.json'
+  assert.ok(!result)
+})
 
-      statSyncStub.withArgs(pathToCheck).returns({
-        isFile: () => false
-      })
-      statSyncStub.withArgs(pathPkgJson).returns({
-        isFile: () => true
-      })
-      const result = checkPackageJson(pathToCheck)
+test("checkPackageJson returns true if path is dir, path ends in '/', with package.json", (t) => {
+  const { statSyncStub } = t.nr
+  const pathToCheck = '/dir/'
+  const pathPkgJson = '/dir/package.json'
 
-      t.ok(result)
+  statSyncStub.withArgs(pathToCheck).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => true
+  })
+  const result = checkPackageJson(pathToCheck)
 
-      t.end()
+  assert.ok(result)
+})
+
+test('checkPackageJson returns true if path is file with package.json in dir', (t) => {
+  const { statSyncStub } = t.nr
+  const pathToCheck = '/dir/file.js'
+  const pathPkgJson = '/dir/package.json'
+
+  statSyncStub.withArgs(pathToCheck).returns({
+    isFile: () => true
+  })
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => true
+  })
+  const result = checkPackageJson(pathToCheck)
+
+  assert.ok(result)
+})
+
+test('checkPackageJson returns true if path is file with no package.json in dir', (t) => {
+  const { statSyncStub } = t.nr
+  const pathToCheck = '/dir/file.js'
+  const pathPkgJson = '/dir/package.json'
+
+  statSyncStub.withArgs(pathToCheck).returns({
+    isFile: () => true
+  })
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => false
+  })
+  const result = checkPackageJson(pathToCheck)
+
+  assert.ok(!result)
+})
+
+test('getTruePath returns pm_cwd path if its good and removes filename from path', async (t) => {
+  const { statSyncStub } = t.nr
+  const pmCwdPath = '/dir/file.js'
+  const pathPkgJson = '/dir/package.json'
+  const pmExecPath = '/otherdir'
+  const pathExecPkgJson = '/otherdir/package.json'
+
+  const process = {
+    pm2_env: {
+      pm_cwd: pmCwdPath,
+      pm_exec_path: pmExecPath
     }
-  )
+  }
 
-  test.test('checkPackageJson returns true if path is file with package.json in dir', (t) => {
-    const pathToCheck = '/dir/file.js'
-    const pathPkgJson = '/dir/package.json'
+  statSyncStub.withArgs(pmCwdPath).returns({
+    isFile: () => true
+  })
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => true
+  })
+  statSyncStub.withArgs(pmExecPath).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pathExecPkgJson).returns({
+    isFile: () => false
+  })
+  const result = await getTruePath(process)
 
-    statSyncStub.withArgs(pathToCheck).returns({
-      isFile: () => true
-    })
-    statSyncStub.withArgs(pathPkgJson).returns({
-      isFile: () => true
-    })
-    const result = checkPackageJson(pathToCheck)
+  assert.ok(result)
+  assert.equal(result, '/dir')
+})
 
-    t.ok(result)
+test('getTruePath returns pm_exec_path is dir w/ package.json and pm_cwd is bad', async (t) => {
+  const { statSyncStub } = t.nr
+  const pmCwdPath = '/dir'
+  const pathPkgJson = '/dir/package.json'
+  const pmExecPath = '/otherdir'
+  const pathExecPkgJson = '/otherdir/package.json'
 
-    t.end()
+  const process = {
+    pm2_env: {
+      pm_cwd: pmCwdPath,
+      pm_exec_path: pmExecPath
+    }
+  }
+
+  statSyncStub.withArgs(pmCwdPath).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pmExecPath).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pathExecPkgJson).returns({
+    isFile: () => true
+  })
+  const result = await getTruePath(process)
+
+  assert.ok(result)
+  assert.equal(result, '/otherdir')
+})
+
+test('getTruePath rejects when pm_exec_path and pm_cwd are bad', async (t) => {
+  const { statSyncStub } = t.nr
+  const pmCwdPath = '/dir'
+  const pathPkgJson = '/dir/package.json'
+  const pmExecPath = '/otherdir'
+  const pathExecPkgJson = '/otherdir/package.json'
+
+  const process = {
+    pm2_env: {
+      pm_cwd: pmCwdPath,
+      pm_exec_path: pmExecPath
+    }
+  }
+
+  statSyncStub.withArgs(pmCwdPath).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pathPkgJson).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pmExecPath).returns({
+    isFile: () => false
+  })
+  statSyncStub.withArgs(pathExecPkgJson).returns({
+    isFile: () => false
   })
 
-  test.test('checkPackageJson returns true if path is file with no package.json in dir', (t) => {
-    const pathToCheck = '/dir/file.js'
-    const pathPkgJson = '/dir/package.json'
-
-    statSyncStub.withArgs(pathToCheck).returns({
-      isFile: () => true
-    })
-    statSyncStub.withArgs(pathPkgJson).returns({
-      isFile: () => false
-    })
-    const result = checkPackageJson(pathToCheck)
-
-    t.notOk(result)
-
-    t.end()
-  })
-
-  test.test(
-    'getTruePath returns pm_cwd path if its good and removes filename from path',
-    async (t) => {
-      const pmCwdPath = '/dir/file.js'
-      const pathPkgJson = '/dir/package.json'
-      const pmExecPath = '/otherdir'
-      const pathExecPkgJson = '/otherdir/package.json'
-
-      const process = {
-        pm2_env: {
-          pm_cwd: pmCwdPath,
-          pm_exec_path: pmExecPath
-        }
-      }
-
-      statSyncStub.withArgs(pmCwdPath).returns({
-        isFile: () => true
-      })
-      statSyncStub.withArgs(pathPkgJson).returns({
-        isFile: () => true
-      })
-      statSyncStub.withArgs(pmExecPath).returns({
-        isFile: () => false
-      })
-      statSyncStub.withArgs(pathExecPkgJson).returns({
-        isFile: () => false
-      })
-      const result = await getTruePath(process)
-
-      t.ok(result)
-      t.equal(result, '/dir')
-
-      t.end()
-    }
-  )
-
-  test.test(
-    'getTruePath returns pm_exec_path is dir w/ package.json and pm_cwd is bad',
-    async (t) => {
-      const pmCwdPath = '/dir'
-      const pathPkgJson = '/dir/package.json'
-      const pmExecPath = '/otherdir'
-      const pathExecPkgJson = '/otherdir/package.json'
-
-      const process = {
-        pm2_env: {
-          pm_cwd: pmCwdPath,
-          pm_exec_path: pmExecPath
-        }
-      }
-
-      statSyncStub.withArgs(pmCwdPath).returns({
-        isFile: () => false
-      })
-      statSyncStub.withArgs(pathPkgJson).returns({
-        isFile: () => false
-      })
-      statSyncStub.withArgs(pmExecPath).returns({
-        isFile: () => false
-      })
-      statSyncStub.withArgs(pathExecPkgJson).returns({
-        isFile: () => true
-      })
-      const result = await getTruePath(process)
-
-      t.ok(result)
-      t.equal(result, '/otherdir')
-
-      t.end()
-    }
-  )
-
-  test.test('getTruePath rejects when pm_exec_path and pm_cwd are bad', async (t) => {
-    const pmCwdPath = '/dir'
-    const pathPkgJson = '/dir/package.json'
-    const pmExecPath = '/otherdir'
-    const pathExecPkgJson = '/otherdir/package.json'
-
-    const process = {
-      pm2_env: {
-        pm_cwd: pmCwdPath,
-        pm_exec_path: pmExecPath
-      }
-    }
-
-    statSyncStub.withArgs(pmCwdPath).returns({
-      isFile: () => false
-    })
-    statSyncStub.withArgs(pathPkgJson).returns({
-      isFile: () => false
-    })
-    statSyncStub.withArgs(pmExecPath).returns({
-      isFile: () => false
-    })
-    statSyncStub.withArgs(pathExecPkgJson).returns({
-      isFile: () => false
-    })
-
-    try {
-      await getTruePath(process)
-    } catch (e) {
-      t.notOk(e)
-    }
-
-    t.end()
-  })
+  await assert.rejects(getTruePath(process))
 })

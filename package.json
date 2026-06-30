@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint src/*.js test/**/*.js",
     "lint:fix": "eslint --fix src/*.js test/**/*.js",
-    "unit": "c8 tap test/unit/*.test.js --no-coverage",
+    "unit": "c8 -o ./coverage/unit node --test test/unit/*.test.js",
     "prepare": "husky install",
     "test": "npm run unit"
   },
@@ -30,8 +30,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "lockfile-lint": "^4.9.6",
-    "sinon": "^10.0.0",
-    "tap": "^16.3.7"
+    "sinon": "^10.0.0"
   },
   "files": [
     "LICENSE",

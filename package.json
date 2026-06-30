@@ -8,10 +8,10 @@
     "url": "https://github.com/newrelic/newrelic-introspector-node.git"
   },
   "scripts": {
+    "addhook:precommit": "git config --local core.hooksPath .githooks",
     "lint": "eslint src/*.js test/**/*.js",
     "lint:fix": "eslint --fix src/*.js test/**/*.js",
     "unit": "c8 -o ./coverage/unit node --test test/unit/*.test.js",
-    "prepare": "husky install",
     "test": "npm run unit"
   },
   "engines": {
@@ -21,16 +21,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@newrelic/eslint-config": "^0.3.0",
-    "c8": "^7.12.0",
-    "eslint": "^8.44.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "lockfile-lint": "^4.9.6",
-    "sinon": "^10.0.0"
+    "@newrelic/eslint-config": "^0.8.0",
+    "c8": "^11.0.0",
+    "eslint": "^9.39.4",
+    "lint-staged": "^17.0.8",
+    "sinon": "^22.0.0"
   },
   "files": [
     "LICENSE",

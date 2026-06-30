@@ -7,11 +7,12 @@
 
 'use strict'
 
-const yargs = require('yargs')
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
 
 const { list, introspect, instrument } = require('./commands')
 
-yargs
+yargs(hideBin(process.argv))
   .usage('Usage: $0 <cmd> [options]')
   .command('list', 'List the instrumentable processes', {}, list)
   .command(
@@ -49,4 +50,4 @@ yargs
   )
   .demandCommand()
   .help()
-  .strict().argv
+  .strict().parse()

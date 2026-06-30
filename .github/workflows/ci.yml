@@ -13,11 +13,12 @@ jobs:
         node-version: [lts/*]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
+        check-latest: true
     - name: Install Dependencies
       run: npm install
     - name: Run Linting
@@ -27,21 +28,24 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [22.x, 24.x, 26.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
+        check-latest: true
     - name: Install Dependencies
       run: npm install
     - name: Run Unit Tests
       run: npm run unit
     - name: Post Unit Test Coverage
-      uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
+      # v7.0.0
+      uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f
       with:
+        fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
         files: lcov.info
         flags: unit-tests-${{ matrix.node-version }}

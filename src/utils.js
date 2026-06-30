@@ -42,7 +42,7 @@ const isFile = (path) => {
   try {
     const stats = fs.statSync(path)
     return stats.isFile()
-  } catch (err) {
+  } catch {
     return false
   }
 }
@@ -56,35 +56,32 @@ const checkPackageJson = (path) => {
     return isFile(`${path}/package.json`)
   }
 
-  const rgx = /[^/]*$/
-  const pkgPath = path.replace(rgx, 'package.json')
+  const pkgPath = `${path.substring(0, path.lastIndexOf('/') + 1)}package.json`
 
   return isFile(pkgPath)
 }
 
-const getTruePath = async (proc) => {
-  return new Promise((resolve, reject) => {
-    let truePath = ''
+const getTruePath = async (proc) => new Promise((resolve, reject) => {
+  let truePath = ''
 
-    const cwdPathOk = checkPackageJson(proc.pm2_env.pm_cwd)
+  const cwdPathOk = checkPackageJson(proc.pm2_env.pm_cwd)
 
-    const execPathOk = checkPackageJson(proc.pm2_env.pm_exec_path)
+  const execPathOk = checkPackageJson(proc.pm2_env.pm_exec_path)
 
-    if (cwdPathOk) {
-      truePath = proc.pm2_env.pm_cwd
-    } else if (execPathOk) {
-      truePath = proc.pm2_env.pm_exec_path
-    } else {
-      reject(false)
-    }
+  if (cwdPathOk) {
+    truePath = proc.pm2_env.pm_cwd
+  } else if (execPathOk) {
+    truePath = proc.pm2_env.pm_exec_path
+  } else {
+    reject(new Error('could not resolve a valid package path for process'))
+  }
 
-    if (isFile(truePath)) {
-      resolve(truePath.substring(0, truePath.lastIndexOf('/')))
-    }
+  if (isFile(truePath)) {
+    resolve(truePath.substring(0, truePath.lastIndexOf('/')))
+  }
 
-    resolve(truePath)
-  })
-}
+  resolve(truePath)
+})
 
 module.exports = {
   pm2List,

@@ -191,5 +191,5 @@ test('getTruePath rejects when pm_exec_path and pm_cwd are bad', async (t) => {
     isFile: () => false
   })
 
-  await assert.rejects(getTruePath(process))
+  await assert.rejects(getTruePath(process), /could not resolve a valid package path/)
 })

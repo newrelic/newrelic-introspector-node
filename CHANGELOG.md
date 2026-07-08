@@ -1,3 +1,22 @@
+### v3.1.0 (2026-07-08)
+
+#### Features
+
+* Added support for Node.js 26 ([#69](https://github.com/newrelic/newrelic-introspector-node/pull/69)) ([3d14fd5](https://github.com/newrelic/newrelic-introspector-node/commit/3d14fd5af052d34dabc8f49f68004149792d1571))
+
+#### Miscellaneous chores
+
+* Removed `repolinter` as it is no longer necessary, assigned necessary permissions to remaining workflows ([#67](https://github.com/newrelic/newrelic-introspector-node/pull/67)) ([b09ed80](https://github.com/newrelic/newrelic-introspector-node/commit/b09ed8064578eae126e46cfe4c001fcf3a18f8ef))
+* Updated deps to latest ([#72](https://github.com/newrelic/newrelic-introspector-node/pull/72)) ([12ba667](https://github.com/newrelic/newrelic-introspector-node/commit/12ba667ec5096c8451e4efa84b13ead597b14ab0))
+
+#### Tests
+
+* Migrated the tests from `tap` to `node:test` ([#71](https://github.com/newrelic/newrelic-introspector-node/pull/71)) ([d34cd55](https://github.com/newrelic/newrelic-introspector-node/commit/d34cd5598525dfa4f90305ca7e22156c7207f013))
+
+#### Continuous integration
+
+* Added appropriate permissions to `prepare-release.yml` ([#68](https://github.com/newrelic/newrelic-introspector-node/pull/68)) ([34d6c6a](https://github.com/newrelic/newrelic-introspector-node/commit/34d6c6ae44c44ee9b9db05e7bec4d65ac174ddae))
+
 ### v3.0.0 (2026-05-05)
 #### ⚠ BREAKING CHANGES
 
